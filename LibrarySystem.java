@@ -43,7 +43,7 @@ public class LibrarySystem {
                     return;
                 } 
                 else {
-                    System.out.println("T\nhe book is currently out of stock.");
+                    System.out.println("\nThe book is currently out of stock.");
                     return;
                 }
             } 
