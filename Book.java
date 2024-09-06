@@ -1,5 +1,5 @@
 class Book {
-    // this variables are private to avoid manipulation of data and  easy access to the attackers
+    //these variables are private to avoid manipulation of data and  easy access to the attackers
     private final String title; 
     private final String author;
     private final String isbn;
@@ -14,11 +14,9 @@ class Book {
     public String getTitle () {
         return this.title;
     }
-    
     public String getAuthor () {
         return this.author;
     }
-
     public String getISBN () {
         return this.isbn;
     }
