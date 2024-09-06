@@ -7,7 +7,7 @@ public class Menu {
         boolean condition = true;
         do {
             System.out.println("\n\t\tWELCOME TO THE LIBRARY\n------------------------------------------------------");
-            System.out.print("[1] CREATE A BOOK\n[2] BORROW A BOOK\n[3] RETURN A BOOK\n[4] DETAILS OF THE BOOK\n[5] EXIT\nINPUT: ");
+            System.out.print("\t\t[1] CREATE A BOOK\n\t\t[2] BORROW A BOOK\n\t\t[3] RETURN A BOOK\n\t\t[4] DETAILS OF THE BOOK\n\t\t[5] EXIT\nINPUT: ");
             if (scan.hasNextInt()) {
                 options = scan.nextInt();
                 if (options < 6) {
