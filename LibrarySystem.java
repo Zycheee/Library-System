@@ -1,5 +1,5 @@
 import java.util.*;
-public class LibrarySystem {
+class LibrarySystem {
     private ArrayList<Book> books = new ArrayList<Book>(); // This is where you store the data of the user has put and will be stored to the book class
     private ArrayList<Integer> originalCopies = new ArrayList<Integer>(); // This stores the original copies of a book which will be used later in returning books
     Scanner scan = new Scanner (System.in);
