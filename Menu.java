@@ -6,7 +6,7 @@ public class Menu {
         int options;
         boolean condition = true;
         do {
-            System.out.println("\n\t\tWELCOME TO THE LIBRARY\n------------------------------------------------------");
+            System.out.println("\n----------------------------------------------------\n\t\tWELCOME TO THE LIBRARY\n----------------------------------------------------");
             System.out.print("\t\t[1] CREATE A BOOK\n\t\t[2] BORROW A BOOK\n\t\t[3] RETURN A BOOK\n\t\t[4] DETAILS OF THE BOOK\n\t\t[5] EXIT\nINPUT: ");
             if (scan.hasNextInt()) {
                 options = scan.nextInt();
@@ -22,22 +22,21 @@ public class Menu {
                             bookDetails.returnBook();
                             break;
                         case 4:
-                            System.out.println("\nDETAILS OF THE BOOK\n----------------------\n");
                             bookDetails.infoDisplay();
                             break;
                         case 5:
                             System.out.println("\nShutting Down...\n");
                             condition = false;
                             break;
-                        default: System.out.println("\nThere was an error, Please try again.\n");
+                        default: System.out.println("\nThere was an error, Please try again.");
                     }
                 }
                 else 
-                    System.out.println("\nThere was an error. Please try again.\n");
+                    System.out.println("\nThere was an error. Please try again.");
             }
             else {
-                System.out.println("\nThere was an error. Please try again.\n");
-                scan.nextLine();
+                System.out.println("\nThere was an error. Please try again.");
+                scan.nextLine(); 
             }
         } while(condition == true); 
     }
