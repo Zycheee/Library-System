@@ -1,31 +1,36 @@
 import java.util.*;
 public class LibrarySystem {
     private ArrayList<Book> books = new ArrayList<Book>(); // This is where you store the data of the user has put and will be stored to the book class
+    private ArrayList<Integer> originalCopies = new ArrayList<Integer>(); // This stores the original copies of a book which will be used later in returning books
     Scanner scan = new Scanner (System.in);
-    boolean hasBorrowed = false;
-    
+
     public void createBook() {
         System.out.print("\nTitle: ");
         String title = scan.nextLine();
         System.out.print("Author: ");
         String author = scan.nextLine();
-        System.out.print("International Standard Book Number (ISBN): ");
+        System.out.print("International Standard Book Number (Must contain 13 digits): ");
         String isbn = scan.nextLine();
-        System.out.print("Available Copies: ");
-        if (scan.hasNextInt()) {
-            int availableCopies = scan.nextInt();            
-                for (Book book : books) {
-                    if (book.getISBN().equals(isbn)) { // checks if the isbn of the old book has the same isbn with a new book to avoid duplication
-                        System.out.println("\nBook already exists");
-                        return;
+        if (isbn.length() != 13) // checks if the isbn is not equal to 13 digits
+            System.out.println("\nISBN must contain 13 digits. Please try again");
+        else {
+            System.out.print("Available Copies: ");
+            if (scan.hasNextInt()) {
+                int availableCopies = scan.nextInt();   
+                originalCopies.add(availableCopies); 
+                    for (Book book : books) {
+                        if (book.getISBN().equals(isbn)) { // checks if the isbn of the old book has the same isbn with a new book to avoid duplication
+                            System.out.println("\nBook already exists. Please try again");
+                            return;
+                        }
                     }
-                }
                 books.add(new Book(title, author, isbn, availableCopies)); // the data will be stored into the book class based on the array list
                 System.out.println("\nThe book has been created!");
-        }
+                scan.nextLine();
+                }
         else 
             System.out.println("\nAvailable copies must be only in a Numerical Form. Please try again.");
-        scan.nextLine();
+        }
     }
 
     public void borrowBook(){
@@ -36,7 +41,9 @@ public class LibrarySystem {
                 if (book.getAvailableCopies() > 0) { // checks if the available copies of the book is greater than 0
                     book.borrowedBooks(book.getAvailableCopies() - 1); // decrement the book's available copies
                     System.out.println("\nBook borrowed successfully");
-                    hasBorrowed = true; // turns into true if the book is borrowed
+                    System.out.println("\n\t\tTHE BOOK HAS BEEN UPDATED\n-----------------------------------------------------");
+                    System.out.println("\nTitle: " + book.getTitle() +"\nAuthor: "+ book.getAuthor() + "\nInternational Standard Book Number (ISBN): " + book.getISBN() + "\nAvailable Copies: " + book.getAvailableCopies());
+                    System.out.println("\n-----------------------------------------------------\n");
                     return;
                 } 
                 else {
@@ -53,11 +60,14 @@ public class LibrarySystem {
         System.out.print("\nEnter the ISBN of the book to return: ");
         String bookName = scan.nextLine();
         for (Book book : books) {
+            for (Integer origCopies : originalCopies)
             if (bookName.equals(book.getISBN())) { // checks if the isbn matches the user input isbn
-                if (hasBorrowed != false) { // checks if the book has been borrowed or not 
+                if (book.getAvailableCopies() < origCopies) { // checks if the book exceeds than its original copies of the book
                     book.returnedBooks(book.getAvailableCopies() + 1); // increment the book's available copies
                     System.out.println("\nBook has been returned successfully");
-                    hasBorrowed = false; // turns into false after returng the borroweed book
+                    System.out.println("\n\t\tTHE BOOK HAS BEEN UPDATED\n-----------------------------------------------------");
+                    System.out.println("\nTitle: " + book.getTitle() +"\nAuthor: "+ book.getAuthor() + "\nInternational Standard Book Number (ISBN): " + book.getISBN() + "\nAvailable Copies: " + book.getAvailableCopies());
+                    System.out.println("");
                     return;
                 }
                 else {
@@ -74,16 +84,11 @@ public class LibrarySystem {
         if (scan.hasNextInt()) { // checks if the user input is an integer or in numerical form. 
             int choice = scan.nextInt();
             scan.nextLine();
+            System.out.print("\n\t\tDETAILS OF THE BOOK\n----------------------------------------------------\n");
             switch (choice) {
                 case 1: // this statement will execute if the user wants to show all books
                     for (Book book : books) { 
-                        System.out.println("\n\t\tDETAILS OF THE BOOK\n-----------------------------------------------------");
-                        System.out.println("\nTitle: " + book.getTitle());
-                        System.out.println("Author: " + book.getAuthor());
-                        System.out.println("International Standard Book Number (ISBN): " + book.getISBN());
-                        System.out.print("Available Copies: " + book.getAvailableCopies());
-                        System.out.println();
-                        return;
+                        System.out.println("\nTitle: " + book.getTitle() +"\nAuthor: "+ book.getAuthor() + "\nInternational Standard Book Number (ISBN): " + book.getISBN() + "\nAvailable Copies: " + book.getAvailableCopies());
                     }
                     break;
                 case 2: // this statement will execute if the user wants to know a specific book
@@ -91,12 +96,7 @@ public class LibrarySystem {
                     String bookISBN = scan.nextLine();
                     for (Book book : books) {
                         if (bookISBN.equals(book.getISBN())) { //checks if the user isbn input has the same isbn of a book
-                            System.out.println("\n\t\tDETAILS OF THE BOOK\n----------------------\n");
-                            System.out.println("Title: " + book.getTitle());
-                            System.out.println("Author: " + book.getAuthor());
-                            System.out.println("International Standard Book Number (ISBN): " + book.getISBN());
-                            System.out.print("Available Copies: " + book.getAvailableCopies());
-                            System.out.println();
+                            System.out.println("\nTitle: " + book.getTitle() +"\nAuthor: "+ book.getAuthor() + "\nInternational Standard Book Number (ISBN): " + book.getISBN() + "\nAvailable Copies: " + book.getAvailableCopies());
                             return;
                         }
                     }
