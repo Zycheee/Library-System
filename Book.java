@@ -1,5 +1,4 @@
-class Book {
-    //these variables are private to avoid manipulation of data and  easy access to the attackers
+class Book {   //these variables are private to avoid manipulation of data and  easy access to the attackers
     private final String title; 
     private final String author;
     private final String isbn;
