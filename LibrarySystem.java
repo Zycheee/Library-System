@@ -17,7 +17,6 @@ class LibrarySystem {
             System.out.print("Available Copies: ");
             if (scan.hasNextInt()) {
                 int availableCopies = scan.nextInt();   
-                originalCopies.add(availableCopies); 
                     for (Book book : books) {
                         if (book.getISBN().equals(isbn)) { // checks if the isbn of the old book has the same isbn with a new book to avoid duplication
                             System.out.println("\nBook already exists. Please try again");
@@ -25,6 +24,7 @@ class LibrarySystem {
                         }
                     }
                 books.add(new Book(title, author, isbn, availableCopies)); // the data will be stored into the book class based on the array list
+                originalCopies.add(availableCopies); // this data waill be stored to the original copies of a book that was created by the user
                 System.out.println("\nThe book has been created!");
                 scan.nextLine();
                 }
@@ -43,7 +43,6 @@ class LibrarySystem {
                     System.out.println("\nBook borrowed successfully");
                     System.out.println("\n\t\tTHE BOOK HAS BEEN UPDATED\n-----------------------------------------------------");
                     System.out.println("\nTitle: " + book.getTitle() +"\nAuthor: "+ book.getAuthor() + "\nInternational Standard Book Number (ISBN): " + book.getISBN() + "\nAvailable Copies: " + book.getAvailableCopies());
-                    System.out.println("\n-----------------------------------------------------\n");
                     return;
                 } 
                 else {
@@ -67,7 +66,6 @@ class LibrarySystem {
                     System.out.println("\nBook has been returned successfully");
                     System.out.println("\n\t\tTHE BOOK HAS BEEN UPDATED\n-----------------------------------------------------");
                     System.out.println("\nTitle: " + book.getTitle() +"\nAuthor: "+ book.getAuthor() + "\nInternational Standard Book Number (ISBN): " + book.getISBN() + "\nAvailable Copies: " + book.getAvailableCopies());
-                    System.out.println("");
                     return;
                 }
                 else {
