@@ -19,7 +19,7 @@ class LibrarySystem {
                 int availableCopies = scan.nextInt();   
                     for (Book book : books) {
                         if (book.getISBN().equals(isbn)) { // checks if the isbn of the old book has the same isbn with a new book to avoid duplication
-                            System.out.println("\nBook already exists. Please try again");
+                            System.out.println("\nThe ISBN is already taken. Please try again");
                             return;
                         }
                     }
